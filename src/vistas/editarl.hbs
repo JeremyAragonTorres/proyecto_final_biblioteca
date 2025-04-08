@@ -1,0 +1,85 @@
+<form action="/libros/editarl" method="post">
+
+  <label>ISBN (mín. 50 caracteres):</label>
+  <input type="text" name="ISBN" maxlength="50" required /><br />
+  <button>Consultar Libro</button> <br />
+</form> <br />
+
+
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ISBN</th>
+      <th>Título del libro</th>
+      <th>Autor  del libro</th>
+      <th>Fecha de edicion</th>
+      <th>Cantidad de ejemplares</th>
+      <th>Tipo de presentacion</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if libro}}
+      <tr>
+        <td>{{libro.ISBN}}</td>
+        <td>{{libro.tituloLibro}}</td>
+        <td>{{libro.autorLibro}}</td>
+        <td>{{formatearFecha libro.fechaEd}}</td>
+        <td>{{libro.CanEjemp}}</td>
+        <td>{{libro.tipPres}}</td>
+      </tr>
+        <form action="/libros/editar/{{libro.ISBN}}" method="get">
+        <button type="submit">Modificar</button>
+        </form>
+    {{else}}
+      <tr>
+        <td colspan="6">No se encontró ningún libro.</td>
+      </tr>
+    {{/if}}
+  </tbody>
+</table><br />
+
+<form action="/libros/editar/{{libro.ISBN}}" method="post">
+  <label>ISBN:</label>
+  <input type="text" name="ISBN" value="{{libro.ISBN}}" readonly /><br />
+
+  <label>Título:</label>
+  <input type="text" name="tituloLibro" value="{{libro.tituloLibro}}" required /><br />
+
+  <label>Autor:</label>
+  <input type="text" name="autorLibro" value="{{libro.autorLibro}}" required /><br />
+
+  <label>Fecha de Edición:</label>
+  <input type="date" name="fechaEd" value="{{libro.fechaEd}}" required /><br />
+
+  <label>Número de Páginas:</label>
+  <input type="number" name="numPag" value="{{libro.numPag}}" required /><br />
+
+  <label>Cantidad de Ejemplares:</label>
+  <input type="number" name="CanEjemp" value="{{libro.CanEjemp}}" required /><br />
+
+  <label>Ejemplares Disponibles:</label>
+  <input type="number" name="canEjempDisp" value="{{libro.canEjempDisp}}" required /><br />
+
+  <label>Sinopsis:</label><br />
+  <textarea name="sinopsis" required>{{libro.sinopsis}}</textarea><br />
+
+  <label>Tipo de Presentación:</label>
+  <select name="tipPres">
+    <option value="Físico" {{#ifEqual libro.tipPres "Físico"}}selected{{/ifEqual}}>Físico</option>
+    <option value="Electronico" {{#ifEqual libro.tipPres "Electronico"}}selected{{/ifEqual}}>Electronico</option>
+    <option value="Video" {{#ifEqual libro.tipPres "Video"}}selected{{/ifEqual}}>Video</option>
+  </select><br />
+
+  <label>Tipo de Literatura:</label>
+  <select name="tipoLit">
+    <option value="Narrativo" {{#ifEqual libro.tipoLit "Narrativo"}}selected{{/ifEqual}}>Narrativo</option>
+    <option value="Lirico" {{#ifEqual libro.tipoLit "Lirico"}}selected{{/ifEqual}}>Lirico</option>
+    <option value="Poetico" {{#ifEqual libro.tipoLit "Poetico"}}selected{{/ifEqual}}>Poetico</option>
+    <option value="Dramatico" {{#ifEqual libro.tipoLit "Dramatico"}}selected{{/ifEqual}}>Dramatico</option>
+    <option value="Didactico" {{#ifEqual libro.tipoLit "Didactico"}}selected{{/ifEqual}}>Didactico</option>
+  </select><br />
+
+  <button type="submit">Guardar Cambios</button>
+</form>
+

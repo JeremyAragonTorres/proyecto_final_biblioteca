@@ -1,0 +1,27 @@
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>ISBN</th>
+      <th>Título del libro</th>
+      <th>Autor  del libro</th>
+      <th>Fecha de edicion</th>
+      <th>Cantidad de ejemplares</th>
+      <th>Tipo de presentacion</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each libros}}
+      <tr>
+        <td>{{@index}}</td>
+        <td>{{ISBN}}</td>
+        <td>{{tituloLibro}}</td>
+        <td>{{autorLibro}}</td>
+        <td>{{formatearFecha fechaEd}}</td>
+        <td>{{CanEjemp}}</td>
+        <td>{{tipPres}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

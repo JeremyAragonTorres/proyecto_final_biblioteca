@@ -1,0 +1,47 @@
+<form action="/libros/add" method="post">
+
+  <label>ISBN (mín. 50 caracteres):</label>
+  <input type="text" name="ISBN" id="ISBN" maxlength="50" required /><br />
+
+  <label>Título del Libro (mín. 50 caracteres):</label>
+  <input type="text" name="tituloLibro" id="tituloLibro" maxlength="50" required /><br />
+
+  <label>Autor del Libro (mín. 60 caracteres):</label>
+  <input type="text" name="autorLibro"  id="autorLibro"  maxlength="60" required /><br />
+
+  <label>Fecha de Edición:</label>
+  <input type="date" name="fechaEd" id="fechaEd" required /><br />
+
+  <label>Número de Páginas (mín. 100):</label>
+  <input type="number" name="numPag" id="numPag" min="100" required /><br />
+
+  <label>Cantidad de Ejemplares (mín. 100):</label>
+  <input type="number" name="CanEjemp" id="CanEjemp" max="100" required /><br />
+
+  <label>Cantidad de Ejemplares Disponibles (mín. 100):</label>
+  <input type="number" name="canEjempDisp" id="canEjempDisp" max="100" required /><br />
+
+  <label>Sinopsis (mín. 1000 caracteres):</label><br />
+  <textarea name="sinopsis" id="sinopsis" maxlength="1000" required></textarea><br />
+
+  <label>Tipo de Presentación (mín. 20 caracteres):</label>
+  <select name="tipPres" id="tipPres" required>
+    <option value="Físico">Físico</option>
+    <option value="Electronico">Electronico</option>
+    <option value="Video">Video</option>
+  </select> <br />
+
+  <label>Tipo de Literatura (mín. 20 caracteres):</label>
+  <select name="tipoLit"  id="tipoLit" required>
+    <option value="Narrativo">Narrativo</option>
+    <option value="Lirico">Lirico</option>
+    <option value="Poetico">Poetico</option>
+    <option value="Dramatico">Dramatico</option>
+    <option value="Didactico">Didactico</option>
+
+  </select><br />
+
+
+<button>Agregar Libro</button>
+
+</form>

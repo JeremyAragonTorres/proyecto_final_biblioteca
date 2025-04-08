@@ -1,0 +1,37 @@
+<form action="/libros/eliminarl" method="post">
+
+  <label>ISBN (mín. 50 caracteres):</label>
+  <input type="text" name="ISBN" maxlength="50" required /><br />
+<button>Consultar libro</button> <br />
+</form>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ISBN</th>
+      <th>Título del libro</th>
+      <th>Autor  del libro</th>
+      <th>Fecha de edicion</th>
+      <th>Cantidad de ejemplares</th>
+      <th>Tipo de presentacion</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if libro}}
+      <tr>
+        <td>{{libro.ISBN}}</td>
+        <td>{{libro.tituloLibro}}</td>
+        <td>{{libro.autorLibro}}</td>
+        <td>{{formatearFecha libro.fechaEd}}</td>
+        <td>{{libro.CanEjemp}}</td>
+        <td>{{libro.tipPres}}</td>
+      </tr>
+       <form action="/libros/eliminar/{{libro.ISBN}}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este libro?');">
+       <button type="submit">Eliminar</button>
+       </form>
+    {{else}}
+      <tr>
+        <td colspan="6">No se encontró ningún libro.</td>
+      </tr>
+    {{/if}}
+  </tbody>
+</table>

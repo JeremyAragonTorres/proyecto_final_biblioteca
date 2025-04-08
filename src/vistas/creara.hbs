@@ -1,0 +1,61 @@
+<form action="/autor/add" method="post">
+  <label>Nombre del Autor: </label>
+  <input type="text" name="nombre" id="nombre" maxlength="60" required /><br />
+
+  <br>
+
+  <label>Apellidos del Autor: </label>
+  <input type="text" name="apellidos" id="apellidos" maxlength="60" required /><br />
+
+  <br>
+
+  <label>Fecha de publicación del primer libro: </label>
+  <input type="date" name="fecPub" id="fecPub" required /><br />
+
+  <br>
+
+  <label>Premios: </label>
+  <textarea name="premios" id="premios" maxlength="100" required></textarea><br />
+
+  <br>
+
+  <label>Fecha de nacimiento: </label>
+  <input type="date" name="fecNac" id="fecNac" required /><br />
+
+  <br>
+
+  <label>Fecha de fallecimiento: </label>
+  <input type="date" name="fecFall" id="fecFall" required /><br />
+
+  <br>
+
+  <button>Agregar Autor</button>
+</form><br />
+
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nombre del Autor</th>
+      <th>Apellido del Autor</th>
+      <th>Fecha publicación primer libro</th>
+      <th>Premios</th>
+      <th>Fecha de nacimiento</th>
+      <th>Fecha de fallecimiento</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each autores}}
+      <tr>
+        <td>{{@index}}</td>
+        <td>{{nombre}}</td>
+        <td>{{apellidos}}</td>
+        <td>{{formatearFecha fecPub}}</td>
+        <td>{{premios}}</td>
+        <td>{{formatearFecha fecNac}}</td>
+        <td>{{formatearFecha fecFall}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
