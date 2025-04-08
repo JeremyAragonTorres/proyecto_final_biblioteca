@@ -1,83 +1,85 @@
-<form action="/autores/actualizar" method="post">
-  <label>Nombre del Autor: </label>
-  <input type="text" name="nombre" id="nombre" maxlength="60" required />
-  <br />
-  <button>Consultar libro</button>
-  <br />
-</form>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Actualizar Autor</h2>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Nombre del Autor</th>
-      <th>Apellido del Autor</th>
-      <th>Fecha publicación primer libro</th>
-      <th>Premios</th>
-      <th>Fecha de nacimiento</th>
-      <th>Fecha de fallecimiento</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#if autores.length}}
-      {{#each autores}}
-        <tr>
-          <td>{{@index}}</td>
-          <td>{{nombre}}</td>
-          <td>{{apellidos}}</td>
-          <td>{{formatearFecha fecPub}}</td>
-          <td>{{premios}}</td>
-          <td>{{formatearFecha fecNac}}</td>
-          <td>{{formatearFecha fecFall}}</td>
-        </tr>
-      {{/each}}
-    {{else}}
-      <tr>
-        <td colspan="8">No se encontró ningún autor.</td>
-      </tr>
-    {{/if}}
-  </tbody>
-</table>
-
-{{#if autores.length}}
-  <form action="/autor/editar/{{autores.[0]._id}}" method="get" style="margin-top: 15px;">
-    <button type="submit">Modificar Autor</button>
+  <form action="/autores/actualizar" method="post" class="mb-4">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Autor:</label>
+      <input type="text" class="form-control" name="nombre" id="nombre" maxlength="60" required />
+    </div>
+    <button type="submit" class="btn btn-success">Consultar Autor</button>
   </form>
-{{/if}}
-<br />
 
-<form action="/autor/editar/{{autores._id}}" method="post">
-  <label>Nombre:</label>
-  <input type="text" name="nombre" value="{{autores.nombre}}" /><br />
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>No</th>
+        <th>Nombre del Autor</th>
+        <th>Apellido del Autor</th>
+        <th>Fecha publicación primer libro</th>
+        <th>Premios</th>
+        <th>Fecha de nacimiento</th>
+        <th>Fecha de fallecimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#if autores.length}}
+        {{#each autores}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{nombre}}</td>
+            <td>{{apellidos}}</td>
+            <td>{{formatearFecha fecPub}}</td>
+            <td>{{premios}}</td>
+            <td>{{formatearFecha fecNac}}</td>
+            <td>{{formatearFecha fecFall}}</td>
+              
+            </td>
+          </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan="8" class="text-center">No se encontró ningún autor.</td>
+        </tr>
+      {{/if}}
+    </tbody>
+  </table>
 
-  <br>
+  {{#if autores.length}}
+    <h4 class="mt-5">Editar Datos del Autor</h4>
+    <form action="/autor/editar/{{autores.[0]._id}}" method="post" class="mt-3">
+      <div class="mb-3">
+        <label class="form-label">Nombre:</label>
+        <input type="text" name="nombre" value="{{autores.[0].nombre}}" class="form-control" required />
+      </div>
 
-  <label>Apellidos:</label>
-  <input type="text" name="apellidos" value="{{autores.apellidos}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Apellidos:</label>
+        <input type="text" name="apellidos" value="{{autores.[0].apellidos}}" class="form-control" required />
+      </div>
 
-  <br>
+      <div class="mb-3">
+        <label class="form-label">Fecha de Publicación del Primer Libro:</label>
+        <input type="date" name="fecPub" value="{{formatearInputDate autores.[0].fecPub}}" class="form-control" required />
+      </div>
 
-  <label>Fecha de Publicación del Primer Libro:</label>
-  <input type="date" name="fecPub" value="{{formatearInputDate autores.fecPub}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Premios:</label>
+        <textarea name="premios" class="form-control" required>{{autores.[0].premios}}</textarea>
+      </div>
 
-  <br>
+      <div class="mb-3">
+        <label class="form-label">Fecha de Nacimiento:</label>
+        <input type="date" name="fecNac" value="{{formatearInputDate autores.[0].fecNac}}" class="form-control" required />
+      </div>
 
-  <label>Premios:</label><br />
-  <textarea name="premios" required>{{autores.premios}}</textarea><br />
+      <div class="mb-3">
+        <label class="form-label">Fecha de Fallecimiento:</label>
+        <input type="date" name="fecFall" value="{{formatearInputDate autores.[0].fecFall}}" class="form-control" />
+      </div>
 
-  <br>
-
-  <label>Fecha de Nacimiento:</label>
-  <input type="date" name="fecNac" value="{{formatearInputDate autores.fecNac}}" required /><br />
-
-  <br>
-
-  <label>Fecha de Fallecimiento:</label>
-  <input type="date" name="fecFall" value="{{formatearInputDate autores.fecFall}}" /><br />
-
-  <br>
-
-  <button type="submit">Guardar Cambios</button>
-</form>
-
+      <form action="/autor/editar/{{_id}}" method="get">
+                <button type="submit" class="btn btn-warning btn-sm">Modificar</button>
+              </form>
+    </form>
+  {{/if}}
+</div>

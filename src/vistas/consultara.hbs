@@ -1,38 +1,44 @@
-<form action="/autores/consultar" method="post">
-  <label>Nombre del Autor: </label>
-  <input type="text" name="nombre" id="nombre" maxlength="60" required /><br />
-  <button>Consultar libro</button><br />
-</form>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Consultar Autor</h2>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Nombre del Autor</th>
-      <th>Apellido del Autor</th>
-      <th>Fecha publicación primer libro</th>
-      <th>Premios</th>
-      <th>Fecha de nacimiento</th>
-      <th>Fecha de fallecimiento</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#if autores.length}}
-      {{#each autores}}
-        <tr>
-          <td>{{@index}}</td>
-          <td>{{nombre}}</td>
-          <td>{{apellidos}}</td>
-          <td>{{formatearFecha fecPub}}</td>
-          <td>{{premios}}</td>
-          <td>{{formatearFecha fecNac}}</td>
-          <td>{{formatearFecha fecFall}}</td>
-        </tr>
-      {{/each}}
-    {{else}}
+  <form action="/autores/consultar" method="post" class="mb-4">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Autor:</label>
+      <input type="text" class="form-control" name="nombre" id="nombre" maxlength="60" required>
+    </div>
+    <button type="submit" class="btn btn-success">Consultar Autor</button>
+  </form>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark text-center">
       <tr>
-        <td colspan="7">No se encontró ningún autor.</td>
+        <th>No</th>
+        <th>Nombre del Autor</th>
+        <th>Apellido del Autor</th>
+        <th>Fecha publicación primer libro</th>
+        <th>Premios</th>
+        <th>Fecha de nacimiento</th>
+        <th>Fecha de fallecimiento</th>
       </tr>
-    {{/if}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#if autores.length}}
+        {{#each autores}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{nombre}}</td>
+            <td>{{apellidos}}</td>
+            <td>{{formatearFecha fecPub}}</td>
+            <td>{{premios}}</td>
+            <td>{{formatearFecha fecNac}}</td>
+            <td>{{formatearFecha fecFall}}</td>
+          </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan="7" class="text-center">No se encontró ningún autor.</td>
+        </tr>
+      {{/if}}
+    </tbody>
+  </table>
+</div>

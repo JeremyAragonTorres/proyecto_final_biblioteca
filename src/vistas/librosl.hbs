@@ -1,27 +1,31 @@
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>ISBN</th>
-      <th>Título del libro</th>
-      <th>Autor  del libro</th>
-      <th>Fecha de edicion</th>
-      <th>Cantidad de ejemplares</th>
-      <th>Tipo de presentacion</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each libros}}
-      <tr>
-        <td>{{@index}}</td>
-        <td>{{ISBN}}</td>
-        <td>{{tituloLibro}}</td>
-        <td>{{autorLibro}}</td>
-        <td>{{formatearFecha fechaEd}}</td>
-        <td>{{CanEjemp}}</td>
-        <td>{{tipPres}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Listado de Libros</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>No</th>
+          <th>ISBN</th>
+          <th>Título del libro</th>
+          <th>Autor del libro</th>
+          <th>Fecha de edición</th>
+          <th>Cantidad de ejemplares</th>
+          <th>Tipo de presentación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each libros}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{ISBN}}</td>
+            <td>{{tituloLibro}}</td>
+            <td>{{autorLibro}}</td>
+            <td>{{formatearFecha fechaEd}}</td>
+            <td>{{CanEjemp}}</td>
+            <td>{{tipPres}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

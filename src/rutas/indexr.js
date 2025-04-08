@@ -39,7 +39,7 @@ router.post("/libros/add", async (req, res) => {
       </head>
       <body>
         <script>
-          alert("📚 ¡Libro guardado correctamente!");
+          alert("¡Libro guardado correctamente!");
           window.location.href = "/crearl";
         </script>
       </body>
@@ -121,7 +121,7 @@ router.post("/libros/editar/:ISBN", async (req, res) => {
       </head>
       <body>
         <script>
-          alert("📚 ¡Libro actualizado correctamente!");
+          alert("¡Libro actualizado correctamente!");
           window.location.href = "/editarl";
         </script>
       </body>
@@ -155,7 +155,7 @@ router.post("/libros/eliminar/:ISBN", async (req, res) => {
         </head>
         <body>
           <script>
-            alert("📚 ¡Libro eliminado correctamente!");
+            alert(" ¡Libro eliminado correctamente!");
             window.location.href = "/eliminarl";
           </script>
         </body>
@@ -260,7 +260,7 @@ router.post("/autor/editar/:id", async (req, res) => {
       </head>
       <body>
         <script>
-          alert("📝 ¡Autor actualizado correctamente!");
+          alert("¡Autor actualizado correctamente!");
           window.location.href = "/actualizara";
         </script>
       </body>
@@ -285,8 +285,8 @@ router.post("/autores/eliminar", async (req, res) => {
 router.post("/autor/eliminar/:id", async (req, res) => {
   const { id } = req.params;
 
-  try {
-    await Autores.findByIdAndDelete(id); // ← aquí el cambio
+  //se obtiene el id del autor a eliminar
+    await Autores.findByIdAndDelete(id); 
     res.send(`
       <html>
         <head>
@@ -295,16 +295,13 @@ router.post("/autor/eliminar/:id", async (req, res) => {
         </head>
         <body>
           <script>
-            alert("🗑️ ¡Autor eliminado correctamente!");
+            alert(" ¡Autor eliminado correctamente!");
             window.location.href = "/eliminara";
           </script>
         </body>
       </html>
     `);
-  } catch (error) {
-    console.error("❌ Error eliminando autor:", error);
-    res.status(500).send("Error al eliminar el autor.");
-  }
+
 });
 
 

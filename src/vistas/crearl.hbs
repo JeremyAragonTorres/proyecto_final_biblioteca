@@ -1,47 +1,69 @@
-<form action="/libros/add" method="post">
+<div class="container mt-4">
+  <h3 class="text-center mb-4"> Agregar Libro</h3>
 
-  <label>ISBN (mín. 50 caracteres):</label>
-  <input type="text" name="ISBN" id="ISBN" maxlength="50" required /><br />
+  <form action="/libros/add" method="post" class="border p-4 rounded shadow bg-light">
+    <div class="mb-3">
+      <label for="ISBN" class="form-label">ISBN (máx. 50 caracteres):</label>
+      <input type="text" name="ISBN" id="ISBN" class="form-control" maxlength="50" required>
+    </div>
 
-  <label>Título del Libro (mín. 50 caracteres):</label>
-  <input type="text" name="tituloLibro" id="tituloLibro" maxlength="50" required /><br />
+    <div class="mb-3">
+      <label for="tituloLibro" class="form-label">Título del Libro (máx. 50 caracteres):</label>
+      <input type="text" name="tituloLibro" id="tituloLibro" class="form-control" maxlength="50" required>
+    </div>
 
-  <label>Autor del Libro (mín. 60 caracteres):</label>
-  <input type="text" name="autorLibro"  id="autorLibro"  maxlength="60" required /><br />
+    <div class="mb-3">
+      <label for="autorLibro" class="form-label">Autor del Libro (máx. 60 caracteres):</label>
+      <input type="text" name="autorLibro" id="autorLibro" class="form-control" maxlength="60" required>
+    </div>
 
-  <label>Fecha de Edición:</label>
-  <input type="date" name="fechaEd" id="fechaEd" required /><br />
+    <div class="mb-3">
+      <label for="fechaEd" class="form-label">Fecha de Edición:</label>
+      <input type="date" name="fechaEd" id="fechaEd" class="form-control" required>
+    </div>
 
-  <label>Número de Páginas (mín. 100):</label>
-  <input type="number" name="numPag" id="numPag" min="100" required /><br />
+    <div class="mb-3">
+      <label for="numPag" class="form-label">Número de Páginas (mín. 100):</label>
+      <input type="number" name="numPag" id="numPag" class="form-control" min="100" required>
+    </div>
 
-  <label>Cantidad de Ejemplares (mín. 100):</label>
-  <input type="number" name="CanEjemp" id="CanEjemp" max="100" required /><br />
+    <div class="mb-3">
+      <label for="CanEjemp" class="form-label">Cantidad de Ejemplares (máx. 100):</label>
+      <input type="number" name="CanEjemp" id="CanEjemp" class="form-control" max="100" required>
+    </div>
 
-  <label>Cantidad de Ejemplares Disponibles (mín. 100):</label>
-  <input type="number" name="canEjempDisp" id="canEjempDisp" max="100" required /><br />
+    <div class="mb-3">
+      <label for="canEjempDisp" class="form-label">Ejemplares Disponibles (máx. 100):</label>
+      <input type="number" name="canEjempDisp" id="canEjempDisp" class="form-control" max="100" required>
+    </div>
 
-  <label>Sinopsis (mín. 1000 caracteres):</label><br />
-  <textarea name="sinopsis" id="sinopsis" maxlength="1000" required></textarea><br />
+    <div class="mb-3">
+      <label for="sinopsis" class="form-label">Sinopsis (máx. 1000 caracteres):</label>
+      <textarea name="sinopsis" id="sinopsis" class="form-control" maxlength="1000" rows="4" required></textarea>
+    </div>
 
-  <label>Tipo de Presentación (mín. 20 caracteres):</label>
-  <select name="tipPres" id="tipPres" required>
-    <option value="Físico">Físico</option>
-    <option value="Electronico">Electronico</option>
-    <option value="Video">Video</option>
-  </select> <br />
+    <div class="mb-3">
+      <label for="tipPres" class="form-label">Tipo de Presentación:</label>
+      <select name="tipPres" id="tipPres" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Físico">Físico</option>
+        <option value="Electronico">Electrónico</option>
+        <option value="Video">Video</option>
+      </select>
+    </div>
 
-  <label>Tipo de Literatura (mín. 20 caracteres):</label>
-  <select name="tipoLit"  id="tipoLit" required>
-    <option value="Narrativo">Narrativo</option>
-    <option value="Lirico">Lirico</option>
-    <option value="Poetico">Poetico</option>
-    <option value="Dramatico">Dramatico</option>
-    <option value="Didactico">Didactico</option>
+    <div class="mb-3">
+      <label for="tipoLit" class="form-label">Tipo de Literatura:</label>
+      <select name="tipoLit" id="tipoLit" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Narrativo">Narrativo</option>
+        <option value="Lirico">Lírico</option>
+        <option value="Poetico">Poético</option>
+        <option value="Dramatico">Dramático</option>
+        <option value="Didactico">Didáctico</option>
+      </select>
+    </div>
 
-  </select><br />
-
-
-<button>Agregar Libro</button>
-
-</form>
+    <button type="submit" class="btn btn-primary w-100">Agregar Libro</button>
+  </form>
+</div>

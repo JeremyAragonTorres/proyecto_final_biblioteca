@@ -1,35 +1,45 @@
-<form action="/libros/buscados" method="post">
+<div class="container mt-4">
+  <h3 class="text-center mb-4"> Consultar Libro por ISBN</h3>
 
-  <label>ISBN (mín. 50 caracteres):</label>
-  <input type="text" name="ISBN" maxlength="50" required /><br />
-<button>Consultar libro</button> <br />
+  <form action="/libros/buscados" method="post" class="border p-4 rounded shadow bg-light">
+    <div class="mb-3">
+      <label for="ISBN" class="form-label">ISBN (máx. 50 caracteres):</label>
+      <input type="text" name="ISBN" id="ISBN" class="form-control" maxlength="50" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Consultar Libro</button>
+  </form>
 
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>ISBN</th>
-      <th>Título del libro</th>
-      <th>Autor  del libro</th>
-      <th>Fecha de edicion</th>
-      <th>Cantidad de ejemplares</th>
-      <th>Tipo de presentacion</th>
-    </tr>
-  </thead>
-  <tbody>
-  {{#if libro}}
-      <tr>
-        <td>{{libro.ISBN}}</td>
-        <td>{{libro.tituloLibro}}</td>
-        <td>{{libro.autorLibro}}</td>
-        <td>{{formatearFecha libro.fechaEd}}</td>
-        <td>{{libro.CanEjemp}}</td>
-        <td>{{libro.tipPres}}</td>
-      </tr>
-    {{else}}
-      <tr>
-        <td colspan="6">No se encontró ningún libro.</td>
-      </tr>
-    {{/if}}
-  </tbody>
-</table>
+  <div class="mt-5">
+    <h5 class="mb-3">Resultado de la búsqueda:</h5>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ISBN</th>
+            <th>Título del libro</th>
+            <th>Autor del libro</th>
+            <th>Fecha de edición</th>
+            <th>Cantidad de ejemplares</th>
+            <th>Tipo de presentación</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          {{#if libro}}
+            <tr>
+              <td>{{libro.ISBN}}</td>
+              <td>{{libro.tituloLibro}}</td>
+              <td>{{libro.autorLibro}}</td>
+              <td>{{formatearFecha libro.fechaEd}}</td>
+              <td>{{libro.CanEjemp}}</td>
+              <td>{{libro.tipPres}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan="6" class="text-danger fw-bold">No se encontró ningún libro.</td>
+            </tr>
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

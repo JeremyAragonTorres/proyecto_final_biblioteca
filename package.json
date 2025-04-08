@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "Projecto de biblioteca",
   "dependencies": {
+    "bootstrap": "^5.3.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.1",

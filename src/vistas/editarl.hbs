@@ -1,85 +1,120 @@
-<form action="/libros/editarl" method="post">
+<div class="container mt-4">
+  <h3 class="text-center mb-4">Editar Libro</h3>
 
-  <label>ISBN (mín. 50 caracteres):</label>
-  <input type="text" name="ISBN" maxlength="50" required /><br />
-  <button>Consultar Libro</button> <br />
-</form> <br />
+  <!-- Formulario de consulta -->
+  <form action="/libros/editarl" method="post" class="border p-4 rounded shadow-sm bg-light mb-4">
+    <div class="mb-3">
+      <label class="form-label">ISBN (máx. 50 caracteres):</label>
+      <input type="text" name="ISBN" maxlength="50" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Consultar Libro</button>
+  </form>
 
+  <!-- Tabla de resultados -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ISBN</th>
+          <th>Título del libro</th>
+          <th>Autor del libro</th>
+          <th>Fecha de edición</th>
+          <th>Cantidad de ejemplares</th>
+          <th>Tipo de presentación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if libro}}
+          <tr>
+            <td>{{libro.ISBN}}</td>
+            <td>{{libro.tituloLibro}}</td>
+            <td>{{libro.autorLibro}}</td>
+            <td>{{formatearFecha libro.fechaEd}}</td>
+            <td>{{libro.CanEjemp}}</td>
+            <td>{{libro.tipPres}}</td>
+          </tr>
+          <tr>
+            <td colspan="6">
+             
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan="6" class="text-danger fw-bold">No se encontró ningún libro.</td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
 
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>ISBN</th>
-      <th>Título del libro</th>
-      <th>Autor  del libro</th>
-      <th>Fecha de edicion</th>
-      <th>Cantidad de ejemplares</th>
-      <th>Tipo de presentacion</th>
-    </tr>
-  </thead>
-  <tbody>
+  <!-- Formulario de edición -->
   {{#if libro}}
-      <tr>
-        <td>{{libro.ISBN}}</td>
-        <td>{{libro.tituloLibro}}</td>
-        <td>{{libro.autorLibro}}</td>
-        <td>{{formatearFecha libro.fechaEd}}</td>
-        <td>{{libro.CanEjemp}}</td>
-        <td>{{libro.tipPres}}</td>
-      </tr>
-        <form action="/libros/editar/{{libro.ISBN}}" method="get">
-        <button type="submit">Modificar</button>
-        </form>
-    {{else}}
-      <tr>
-        <td colspan="6">No se encontró ningún libro.</td>
-      </tr>
-    {{/if}}
-  </tbody>
-</table><br />
+    <form action="/libros/editar/{{libro.ISBN}}" method="post" class="border p-4 rounded shadow bg-light mt-5">
+      <h5 class="text-center mb-3"> Editar Información del Libro</h5>
 
-<form action="/libros/editar/{{libro.ISBN}}" method="post">
-  <label>ISBN:</label>
-  <input type="text" name="ISBN" value="{{libro.ISBN}}" readonly /><br />
+      <div class="mb-3">
+        <label class="form-label">ISBN:</label>
+        <input type="text" name="ISBN" class="form-control" value="{{libro.ISBN}}" readonly />
+      </div>
 
-  <label>Título:</label>
-  <input type="text" name="tituloLibro" value="{{libro.tituloLibro}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Título:</label>
+        <input type="text" name="tituloLibro" class="form-control" value="{{libro.tituloLibro}}" required />
+      </div>
 
-  <label>Autor:</label>
-  <input type="text" name="autorLibro" value="{{libro.autorLibro}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Autor:</label>
+        <input type="text" name="autorLibro" class="form-control" value="{{libro.autorLibro}}" required />
+      </div>
 
-  <label>Fecha de Edición:</label>
-  <input type="date" name="fechaEd" value="{{libro.fechaEd}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Fecha de Edición:</label>
+        <input type="date" name="fechaEd" class="form-control" value="{{libro.fechaEd}}" required />
+      </div>
 
-  <label>Número de Páginas:</label>
-  <input type="number" name="numPag" value="{{libro.numPag}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Número de Páginas:</label>
+        <input type="number" name="numPag" class="form-control" value="{{libro.numPag}}" required />
+      </div>
 
-  <label>Cantidad de Ejemplares:</label>
-  <input type="number" name="CanEjemp" value="{{libro.CanEjemp}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Cantidad de Ejemplares:</label>
+        <input type="number" name="CanEjemp" class="form-control" value="{{libro.CanEjemp}}" required />
+      </div>
 
-  <label>Ejemplares Disponibles:</label>
-  <input type="number" name="canEjempDisp" value="{{libro.canEjempDisp}}" required /><br />
+      <div class="mb-3">
+        <label class="form-label">Ejemplares Disponibles:</label>
+        <input type="number" name="canEjempDisp" class="form-control" value="{{libro.canEjempDisp}}" required />
+      </div>
 
-  <label>Sinopsis:</label><br />
-  <textarea name="sinopsis" required>{{libro.sinopsis}}</textarea><br />
+      <div class="mb-3">
+        <label class="form-label">Sinopsis:</label>
+        <textarea name="sinopsis" class="form-control" rows="3" required>{{libro.sinopsis}}</textarea>
+      </div>
 
-  <label>Tipo de Presentación:</label>
-  <select name="tipPres">
-    <option value="Físico" {{#ifEqual libro.tipPres "Físico"}}selected{{/ifEqual}}>Físico</option>
-    <option value="Electronico" {{#ifEqual libro.tipPres "Electronico"}}selected{{/ifEqual}}>Electronico</option>
-    <option value="Video" {{#ifEqual libro.tipPres "Video"}}selected{{/ifEqual}}>Video</option>
-  </select><br />
+      <div class="mb-3">
+        <label class="form-label">Tipo de Presentación:</label>
+        <select name="tipPres" class="form-select">
+          <option value="Físico" {{#ifEqual libro.tipPres "Físico"}}selected{{/ifEqual}}>Físico</option>
+          <option value="Electronico" {{#ifEqual libro.tipPres "Electronico"}}selected{{/ifEqual}}>Electronico</option>
+          <option value="Video" {{#ifEqual libro.tipPres "Video"}}selected{{/ifEqual}}>Video</option>
+        </select>
+      </div>
 
-  <label>Tipo de Literatura:</label>
-  <select name="tipoLit">
-    <option value="Narrativo" {{#ifEqual libro.tipoLit "Narrativo"}}selected{{/ifEqual}}>Narrativo</option>
-    <option value="Lirico" {{#ifEqual libro.tipoLit "Lirico"}}selected{{/ifEqual}}>Lirico</option>
-    <option value="Poetico" {{#ifEqual libro.tipoLit "Poetico"}}selected{{/ifEqual}}>Poetico</option>
-    <option value="Dramatico" {{#ifEqual libro.tipoLit "Dramatico"}}selected{{/ifEqual}}>Dramatico</option>
-    <option value="Didactico" {{#ifEqual libro.tipoLit "Didactico"}}selected{{/ifEqual}}>Didactico</option>
-  </select><br />
+      <div class="mb-3">
+        <label class="form-label">Tipo de Literatura:</label>
+        <select name="tipoLit" class="form-select">
+          <option value="Narrativo" {{#ifEqual libro.tipoLit "Narrativo"}}selected{{/ifEqual}}>Narrativo</option>
+          <option value="Lirico" {{#ifEqual libro.tipoLit "Lirico"}}selected{{/ifEqual}}>Lirico</option>
+          <option value="Poetico" {{#ifEqual libro.tipoLit "Poetico"}}selected{{/ifEqual}}>Poetico</option>
+          <option value="Dramatico" {{#ifEqual libro.tipoLit "Dramatico"}}selected{{/ifEqual}}>Dramatico</option>
+          <option value="Didactico" {{#ifEqual libro.tipoLit "Didactico"}}selected{{/ifEqual}}>Didactico</option>
+        </select>
+      </div>
 
-  <button type="submit">Guardar Cambios</button>
-</form>
-
+       <form action="/libros/editar/{{libro.ISBN}}" method="get">
+                <button type="submit" class="btn btn-warning">Modificar</button>
+              </form>
+    </form>
+  {{/if}}
+</div>

@@ -1,37 +1,51 @@
-<form action="/libros/eliminarl" method="post">
+<div class="container mt-4">
+  <h3 class="text-center mb-4 text-danger"> Eliminar Libro</h3>
 
-  <label>ISBN (mín. 50 caracteres):</label>
-  <input type="text" name="ISBN" maxlength="50" required /><br />
-<button>Consultar libro</button> <br />
-</form>
-<table border="1">
-  <thead>
-    <tr>
-      <th>ISBN</th>
-      <th>Título del libro</th>
-      <th>Autor  del libro</th>
-      <th>Fecha de edicion</th>
-      <th>Cantidad de ejemplares</th>
-      <th>Tipo de presentacion</th>
-    </tr>
-  </thead>
-  <tbody>
-  {{#if libro}}
-      <tr>
-        <td>{{libro.ISBN}}</td>
-        <td>{{libro.tituloLibro}}</td>
-        <td>{{libro.autorLibro}}</td>
-        <td>{{formatearFecha libro.fechaEd}}</td>
-        <td>{{libro.CanEjemp}}</td>
-        <td>{{libro.tipPres}}</td>
-      </tr>
-       <form action="/libros/eliminar/{{libro.ISBN}}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este libro?');">
-       <button type="submit">Eliminar</button>
-       </form>
-    {{else}}
-      <tr>
-        <td colspan="6">No se encontró ningún libro.</td>
-      </tr>
-    {{/if}}
-  </tbody>
-</table>
+  <!-- Formulario de consulta -->
+  <form action="/libros/eliminarl" method="post" class="border p-4 rounded shadow-sm bg-light mb-4">
+    <div class="mb-3">
+      <label class="form-label">ISBN (máx. 50 caracteres):</label>
+      <input type="text" name="ISBN" maxlength="50" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Consultar Libro</button>
+  </form>
+
+  <!-- Tabla de resultados -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ISBN</th>
+          <th>Título del libro</th>
+          <th>Autor del libro</th>
+          <th>Fecha de edición</th>
+          <th>Cantidad de ejemplares</th>
+          <th>Tipo de presentación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if libro}}
+          <tr>
+            <td>{{libro.ISBN}}</td>
+            <td>{{libro.tituloLibro}}</td>
+            <td>{{libro.autorLibro}}</td>
+            <td>{{formatearFecha libro.fechaEd}}</td>
+            <td>{{libro.CanEjemp}}</td>
+            <td>{{libro.tipPres}}</td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <form action="/libros/eliminar/{{libro.ISBN}}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este libro?');">
+                <button type="submit" class="btn btn-danger">Eliminar Libro</button>
+              </form>
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan="6" class="text-danger fw-bold">No se encontró ningún libro.</td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</div>
